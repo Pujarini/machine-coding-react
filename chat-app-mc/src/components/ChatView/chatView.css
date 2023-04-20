@@ -32,6 +32,7 @@
   /* display: flex; */
   /* justify-content: flex-end; */
   align-items: flex-end;
+  padding: 55px;
 }
 
 .chatSection .chats {
@@ -67,6 +68,27 @@
   align-self: flex-start;
 }
 
+.chat.optionedMessage {
+  color: #000;
+  background-color: #fff;
+  align-self: flex-start;
+  padding: 5px;
+}
+
+.chat.optionedMessage header {
+  padding: 10px;
+  text-align: left;
+}
+
+.optionedMessage__optionList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #027cd5;
+  border-top: 1px solid lightgray;
+  padding: 10px 15px;
+}
+
 .chatSection.noMessageView {
   display: flex;
   justify-content: center;
@@ -74,7 +96,23 @@
 }
 .messageView {
   height: 45px;
-  padding: 10px;
   background-color: yellow;
   border: 1px solid lightgrey;
+}
+.messageView .messageView_wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border: 1px solid lightgrey;
+}
+
+.messageView_wrapper input {
+  flex: 4;
+  width: 100%;
+  border: none;
+  padding: 10px;
+}
+.messageView_wrapper button {
+  flex: 1;
+  border: none;
 }

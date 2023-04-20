@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addChat } from "../../store/orderChatSlice";
 
@@ -7,9 +7,17 @@ const ChatComponent = () => {
   const messages = useSelector((state) => state.chats.currentChat);
   const dispatch = useDispatch();
 
+  const chatContainer = useRef();
+
   const { messageList } = messages;
 
-  console.log(chatMessages, messageList);
+  useEffect(() => {
+    chatContainer.current.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "end",
+    });
+  }, [added]);
 
   useEffect(() => {
     const timerId = setTimeout(displayMessages, 2000);
@@ -17,14 +25,54 @@ const ChatComponent = () => {
     return () => clearTimeout(timerId);
   }, [messageList]);
 
-  const renderMessages = (message) => {
-    let messageType =
-      message.sender === "USER"
+  const requestCallBackHandler = (text) => {
+    const newChat = {
+      message: "I want a callback",
+      messageId: text,
+      messageType: "text",
+      sender: "USER",
+      timestamp: new Date().getTime(),
+    };
+    if (text === "Request a call") {
+      dispatch(addChat(newChat));
+      setAdded(true);
+    }
+  };
+
+  const renderMessages = (msg) => {
+    const { sender, messageType, message, options } = msg;
+    let typeMessage =
+      sender === "USER"
         ? "user-chat"
-        : message.messageType === "optionedMessage"
+        : messageType === "optionedMessage"
         ? "optionedMessage"
         : "bot-chat";
-    return <p className={`chat ${messageType}`}>{message.message}</p>;
+    if (messageType !== "optionedMessage") {
+      return <p className={`chat ${typeMessage}`}>{message}</p>;
+    } else {
+      return (
+        <div className={`chat ${typeMessage}`}>
+          <header>{message}</header>
+          <section>
+            <ul>
+              {options.map((opt) => {
+                return (
+                  <li
+                    className="optionedMessage__optionList"
+                    onClick={() => requestCallBackHandler(opt?.optionText)}
+                  >
+                    {opt?.optionText}{" "}
+                    <span style={{ color: "lightgray" }}>
+                      {opt?.optionSubText}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        </div>
+      );
+    }
   };
 
   const sortMessages = (messages) => {
@@ -42,12 +90,15 @@ const ChatComponent = () => {
   const displayMessages = () => {
     return (
       messageList &&
-      sortMessages(messageList).map((message) => dispatch(addChat(message)))
+      sortMessages(messageList).map((message) =>
+        setTimeout(() => dispatch(addChat(message)), 2000)
+      )
     );
   };
 
   return (
     <section
+      ref={chatContainer}
       className={`chatSection ${!chatMessages.length ? "noMessageView" : ""}`}
     >
       <div className="chats">

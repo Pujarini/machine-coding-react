@@ -30,7 +30,7 @@ const ChatView = () => {
       </header>
       <ChatComponent />
       <section className="messageView">
-        <form onSubmit={chatHandler}>
+        <form onSubmit={chatHandler} className="messageView_wrapper">
           <input
             type="text"
             placeholder="Type a message..."
