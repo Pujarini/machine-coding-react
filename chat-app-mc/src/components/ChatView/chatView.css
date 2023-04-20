@@ -1,0 +1,80 @@
+.chatView__container {
+  flex: 1;
+  width: 100%;
+  /* background-color: aqua; */
+}
+
+.chatView__productInfo {
+  height: 85px;
+  padding: 10px;
+  border: 2px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+}
+
+.chatView__productInfo span {
+  font-weight: 700;
+  font-size: 15px;
+}
+.chatView__productInfo img {
+  object-fit: contain;
+  height: 50px;
+  width: 50px;
+  margin-right: 15px;
+}
+
+.chatSection {
+  background-color: #f1f3f6;
+  height: 560px;
+  width: 100%;
+  overflow: scroll;
+  position: relative;
+  /* display: flex; */
+  /* justify-content: flex-end; */
+  align-items: flex-end;
+}
+
+.chatSection .chats {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  margin-bottom: 15px;
+  /* position: absolute;
+  bottom: 10px;
+  right: 0; */
+}
+
+.chats .chat {
+  /* display: flex;
+  align-items: flex-end;
+  justify-content: end; */
+  height: auto;
+  width: fit-content;
+  padding: 15px;
+  margin: 5px;
+  border-radius: 0px 15px 15px 15px;
+}
+
+.chat.user-chat {
+  background-color: #027cd5;
+  color: #fff;
+  border-radius: 15px 0px 15px 15px;
+  align-self: flex-end;
+}
+.chat.bot-chat {
+  color: #000;
+  background-color: #fff;
+  align-self: flex-start;
+}
+
+.chatSection.noMessageView {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.messageView {
+  height: 45px;
+  padding: 10px;
+  background-color: yellow;
+  border: 1px solid lightgrey;
+}

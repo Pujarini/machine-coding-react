@@ -1,0 +1,78 @@
+.chatList__container {
+  width: 100%;
+}
+
+.chatList__container_withChatView {
+  width: 100%;
+  flex: 1;
+  border-right: 1px solid #f0f0f0;
+}
+
+.chatList__info {
+  width: 100%;
+  padding: 15px;
+}
+
+.chatList__info h1 {
+  color: #212121;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.chatList__info input {
+  width: 100%;
+  border: none;
+  height: 30px;
+  outline: none;
+  padding: 2px;
+  border-bottom: 2px solid;
+}
+
+.chatList__info input::placeholder {
+  color: #878787;
+}
+
+.chatList__wrapper {
+  overflow: scroll;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-x: scroll;
+}
+
+.chatList__item {
+  border-bottom: 1px solid lightgray;
+  padding: 15px;
+  display: flex;
+  gap: 20px;
+}
+
+.chatList__item:hover {
+  background-color: #f1f3f6;
+}
+
+.chatList__item:first-child {
+  border-top: 1px solid lightgray;
+}
+
+.chatList__item .chatList__itemImage {
+  height: 40px;
+  width: 40px;
+}
+
+.chatList__itemImage img {
+  object-fit: contain;
+}
+
+.chatList__itemDetails {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: #000000;
+  font-size: 15px;
+}
+
+.chatList__itemDetails .chatList__itemOrderInfo {
+  display: flex;
+  justify-content: space-between;
+}
